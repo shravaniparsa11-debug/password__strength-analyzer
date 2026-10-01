@@ -1,84 +1,56 @@
-#password_analyzer.py
-from zxcvbn import zxcvbn
-import math
+🔐 Project Explanation – Password Security Analyzer
+1.𝙥𝙧𝙤𝙟𝙚𝙘𝙩 𝙩𝙞𝙩𝙡𝙚
 
-print("======================================")
-print(" PASSWORD SECURITY ANALYZER")
-print("======================================")
+Password Security Analyzer with Custom Wordlist generator
 
-# Password Analysis
-password = input("\nEnter a fake test password: ")
+ 2.𝙄𝙣𝙩𝙧𝙤𝙙𝙪𝙘𝙩𝙞𝙤𝙣
 
-result = zxcvbn(password)
+This project is a Python-based cybersecurity tool that evaluates the strength of a dummy/test password. It analyzes characteristics such as password length and character types and calculates an estimated strength score and entropy.
+It also creates a custom wordlist from dummy test information for educational cybersecurity testing.
 
-charset = 0
+3. 𝙊𝙗𝙟𝙚𝙘𝙩𝙞𝙫𝙚
 
-if any(c.islower() for c in password):
-    charset += 26
+.To understand password security.
+.To analyze password strength.
+.To calculate password entropy.
+.To identify weak or easily guessable password patterns.
+.To demonstrate basic cybersecurity concepts using Python.
 
-if any(c.isupper() for c in password):
-    charset += 26
+4. 𝙏𝙚𝙘𝙝𝙣𝙤𝙡𝙤𝙜𝙞𝙚𝙨 𝙐𝙨𝙚𝙙
 
-if any(c.isdigit() for c in password):
-    charset += 10
+.𝙋𝙧𝙤𝙜𝙧𝙖𝙢𝙢𝙞𝙣𝙜 𝙇𝙖𝙣𝙜𝙪𝙖𝙜𝙚: Python
+.𝙋𝙡𝙖𝙩𝙛𝙤𝙧𝙢: Pydroid 3
+.𝙄𝙣𝙥𝙪𝙩: Dummy/test password and dummy data
+.𝙊𝙪𝙩𝙥𝙪𝙩: Password analysis and custom worldleast
 
-if any(not c.isalnum() for c in password):
-    charset += 32
+5. 𝙒𝙤𝙧𝙠𝙞𝙣𝙜
 
-if charset > 0:
-    entropy = len(password) * math.log2(charset)
-else:
-    entropy = 0
+The project works in two main stages:
 
-print("\n--- Password Analysis ---")
-print("Length:", len(password))
-print("Score:", result["score"], "/ 4")
-print("Estimated guesses:", result["guesses"])
-print("Entropy:", round(entropy, 2), "bits")
+𝙎𝙩𝙖𝙜𝙚 1 – 𝙋𝙖𝙨𝙨𝙬𝙤𝙧𝙙 𝘼𝙣𝙖𝙡𝙮𝙨𝙞𝙨
 
-if result["score"] <= 1:
-    print("Strength: WEAK")
-elif result["score"] == 2:
-    print("Strength: FAIR")
-elif result["score"] == 3:
-    print("Strength: STRONG")
-else:
-    print("Strength: VERY STRONG")
+1.User enters a dummy/test password.
+2.Program checks its characteristics.
+3.It calculates a strength score.
+4.It estimates guesses and entropy.
+5.It displays the strength category such as Weak, Fair, or Strong.
 
+𝙎𝙩𝙖𝙜𝙚 2 – 𝘾𝙪𝙨𝙩𝙤𝙢 𝙒𝙤𝙧𝙙𝙡𝙞𝙨𝙩
+User enters dummy information such as name, pet name and year.
+The program generates combinations from this test data.
+It saves the generated entries into custom_wordlist.txt.
 
-# Custom Wordlist Generator
-print("\n--- Custom Wordlist ---")
+6. 𝙔𝙤𝙪𝙧 𝙊𝙪𝙩𝙥𝙪𝙩
 
-name = input("Enter dummy name: ").strip()
-pet = input("Enter dummy pet name: ").strip()
-year = input("Enter dummy year: ").strip()
+Your successful test showed:
+.Password length: 9
+.Score: 2 / 4
+.Estimated guesses: 1,732,000
+.Entropy: 58.99 bits
+.Strength: FAIR
+.Wordlist entries: 9
+.File: custom_wordlist.txt
 
-words = set()
+7. 𝘾𝙤𝙣𝙘𝙡𝙪𝙨𝙞𝙤𝙣
 
-words.add(name)
-words.add(name.lower())
-words.add(name.upper())
-
-words.add(pet)
-words.add(pet.lower())
-words.add(pet.upper())
-
-words.add(year)
-
-if name and year:
-    words.add(name + year)
-
-if pet and year:
-    words.add(pet + year)
-
-with open("custom_wordlist.txt", "w") as file:
-    for word in sorted(words):
-        file.write(word + "\n")
-
-print("\nWordlist created successfully!")
-print("Total entries:", len(words))
-print("Saved as: custom_wordlist.txt")
-
-print("\n======================================")
-print(" PROJECT COMPLETED SUCCESSFULLY")
-print("======================================")
+The project demonstrates how Python can be used to evaluate password strength and illustrate password-security concepts. It helps users understand why strong, less predictable passwords are important.
